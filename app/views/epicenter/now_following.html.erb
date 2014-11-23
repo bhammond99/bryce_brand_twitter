@@ -1,0 +1,14 @@
+<h2>You are now following <%= @user.username %></h2>
+
+
+
+<p>Find me in app/views/epicenter/now_following.html.erb</p>
+
+
+
+<%= form_tag('tweets/new') do %>
+    <span class="invisible">
+      <%= text_field_tag :user_id, new_tweet_path %>
+    </span><br />
+    <%= submit_tag "Post a Tweet", class: "btn btn-primary" %>
+  <% end %>

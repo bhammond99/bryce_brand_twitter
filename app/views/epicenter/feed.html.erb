@@ -1,0 +1,31 @@
+<h1>Epicenter#feed</h1>
+<p>Find me in app/views/epicenter/feed.html.erb</p>
+<p>Hello, <%= current_user.name %>!</p>
+<div>
+	<p>Tell us whats going on:</p>
+
+	<%= form_tag('/user_profile') do %>
+		<%= text_field_tag :message %>
+		<br>
+		<span class="invisible"><%= number_field_tag :user_id,current_user.id %></span><br />
+		<%= submit_tag "Tweet it!", class: "btn btn-primary" %>
+
+		<% end %>
+	</div>	
+
+
+
+
+<p>Here are your friends' tweets:</p>
+
+<div>
+	<% @tweets_for_feed.each do |f| %>
+	<div>
+		<p><%= f.message %></p>
+		<p><strong><em><%= f.user.username %></em></strong></p>
+	</div>
+	<% end %>
+</div>
+
+
+  	

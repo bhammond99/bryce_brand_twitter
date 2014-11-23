@@ -1,0 +1,50 @@
+<h1>Listing tweets</h1>
+
+<p>
+  Welcome, <%= current_user.name %>!
+</p>
+<p>
+  Your e-mail is: <%= current_user.email %>.
+</p>
+
+
+<div class="tweets">
+
+<table class="table table-striped">
+    <tr>
+      <th>Message</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @tweets.each do |tweet| %>
+      <tr>
+        <td><%= tweet.message %></td>
+        <td><%= link_to tweet.user.username, user_profile_path(user_id: tweet.user_id) %></td>
+        <td><%= link_to time_ago_in_words(tweet.created_at) + " ago", tweet %></td>
+        <span class"hide">
+        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </span>
+      </tr>
+    <% end %>
+</table>
+</div>
+
+<br>
+
+<%= form_tag('tweets/new') do %>
+    <span class="invisible">
+      <%= text_field_tag :user_id, new_tweet_path %>
+    </span><br />
+    <%= submit_tag "New Tweet", class: "btn btn-primary" %>
+  <% end %>
+
+
+
+
+
+
+
+

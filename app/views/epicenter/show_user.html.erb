@@ -1,0 +1,41 @@
+<h1>Epicenter#show_user</h1>
+<p>Find me in app/views/epicenter/show_user.html.erb</p>
+
+<h1><%= @user.username %></h1>
+<h3><%= @user.location %></h3>
+<h3>Bio:</h3>
+<p><%= @user.bio %></p>
+
+<%= form_tag('tweets/new') do %>
+		    <span class="invisible">
+		      <%= text_field_tag :user_id, new_tweet_path %>
+		    </span><br />
+		    <%= submit_tag "New Tweet", class: "btn btn-primary" %>
+  	<% end %>
+
+  	
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Message</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.tweets.each do |tweet| %>
+      <tr>
+        <td><%= tweet.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @user.id != current_user.id && current_user.following.include?(@user.id) == false %>
+	<%= form_tag('/now_following') do %>
+		<span class="invisible">
+			<%= text_field_tag :follow_id, @user.id %>
+		</span><br />
+		<%= submit_tag "Follow", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
