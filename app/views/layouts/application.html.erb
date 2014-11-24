@@ -9,7 +9,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
+<div class="conntainer">
 	 <% if user_signed_in? %>
 
    Hi, <%= current_user.name %>! Welcome back!<br />
@@ -18,13 +18,13 @@
    <%= link_to "Sign out",destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
 
  <% else %>
-
+ 	<div class="field invisible">
    <%= link_to "Sign in",new_user_session_path %>
+</div>
 
  <% end %>
 
 <%= yield %>
-
 </div>
 
 </body>
